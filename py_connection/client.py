@@ -11,7 +11,7 @@ def connect():
 # Lắng nghe tin nhắn từ server
 @sio.on('server_message')
 def on_message(data):
-    print(f"📩 Tin nhắn từ server: {data}")
+    print(f"📩 Tin nhắn từ server: {data}\n")
 
 # Xử lý khi mất kết nối
 @sio.event
@@ -22,8 +22,9 @@ def disconnect():
 sio.connect('http://26.228.134.76:8300')
 
 # Gửi tin nhắn đến server
-message = input("Nhập tin nhắn của bạn: ")
-sio.emit('socket_message', message)
+while (True):
+    message = input("Nhập tin nhắn của bạn: ")
+    sio.emit('socket_message', message)
 
 # Đợi nhận tin nhắn
 sio.wait()
